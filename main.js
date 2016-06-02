@@ -16,8 +16,12 @@ app.use("medias",media);
 //connection bdd
 connection.connect();
 
+console.log("Creation base de donnée !");
+var str = "CREATE DATABASE IF NOT EXISTS `projet_mp3_nod_angular`";
+connection.query(str);
+
 //Création table music
-console.log("Connecté à la base !");
+console.log("Creation table Music !");
 var str = "CREATE TABLE IF NOT EXISTS `music` (";
 str += "`id_music` int(11) NOT NULL AUTO_INCREMENT,";
 str += "`sta_music` int(1) NOT NULL,";
@@ -36,7 +40,7 @@ connection.query(str);
 
 
 //Création table playlist
-console.log("Connecté à la base !");
+console.log("Creation table Playlist !");
 var str = "CREATE TABLE IF NOT EXISTS `playlist` (";
 str += "`id_play` int(11) NOT NULL AUTO_INCREMENT,";
 str += "`sta_play` int(1) NOT NULL,";
@@ -49,7 +53,7 @@ connection.query(str);
 
 
 //Création table liaison
-console.log("Connecté à la base !");
+console.log("Creation table Liaison !");
 var str = "CREATE TABLE IF NOT EXISTS `liaison` (";
 str += "`id_play` int(11) NOT NULL ,";
 str += "`id_music` int(11) NOT NULL ,";
