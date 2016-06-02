@@ -13,11 +13,6 @@ connection.connect();
 
 function initBdd()
 {
-
-  console.log("Creation base de donnée !");
-  var str = "CREATE DATABASE IF NOT EXISTS `projet_mp3_nod_angular`";
-  connection.query(str);
-
   //Création table music
   console.log("Creation table Music !");
   var str = "CREATE TABLE IF NOT EXISTS `music` (";
@@ -59,10 +54,83 @@ function initBdd()
 
 }
 
+
+
 // retourne toute les lignes de music
 function getAllMusic(callback)
 {
     connection.query("SELECT * FROM `music`", function(error, rows){
+        if (error)
+        {
+            console.log(error);
+            return;
+        }
+
+        callback(rows);
+    });
+}
+
+// retourne toute les music en fonction du genre
+function getGenreMusic(genre, callback)
+{
+    connection.query("SELECT * FROM `music` WHERE `genre_music` like '%"+ genre +"%'  ", function(error, rows){
+        if (error)
+        {
+            console.log(error);
+            return;
+        }
+
+        callback(rows);
+    });
+}
+
+// retourne toute les music en fonction de l'artiste
+function getArtistMusic(artist, callback)
+{
+    connection.query("SELECT * FROM `music` WHERE `artist_music` like '%"+ artist +"%'  ", function(error, rows){
+        if (error)
+        {
+            console.log(error);
+            return;
+        }
+
+        callback(rows);
+    });
+}
+
+// retourne toute les music en fonction de l'album
+function getAlbumMusic(album, callback)
+{
+    connection.query("SELECT * FROM `music` WHERE `album_music` like '%"+ album +"%'  ", function(error, rows){
+        if (error)
+        {
+            console.log(error);
+            return;
+        }
+
+        callback(rows);
+    });
+}
+
+// retourne toute les music en fonction de l'année
+function getYearMusic(year, callback)
+{
+    connection.query("SELECT * FROM `music` WHERE `year` = '"+ year +"'  ", function(error, rows){
+        if (error)
+        {
+            console.log(error);
+            return;
+        }
+
+        callback(rows);
+    });
+}
+
+// retourne toute les music en fonction du titre
+function searchMusic(titre, callback)
+
+{
+    connection.query("SELECT * FROM `music` WHERE `title_music` like '%"+ titre +"%'  ", function(error, rows){
         if (error)
         {
             console.log(error);
@@ -138,12 +206,17 @@ process.on("SIGINT", function(){
 
 
 module.exports = {
-                    initBdd : initBdd,
-                    getAllMusic : getAllMusic,
-                    getIdMusic  : getIdMusic,
-                    insertMusic : insertMusic,
-                    updateMusic : updateMusic,
-                    removeMusic : removeMusic
+                    initBdd         : initBdd,
+                    getAllMusic     : getAllMusic,
+                    getGenreMusic   : getGenreMusic,
+                    getArtistMusic  : getArtistMusic,
+                    getAlbumMusic   : getAlbumMusic,
+                    getYearMusic    : getYearMusic,
+                    searchMusic     : searchMusic,
+                    getIdMusic      : getIdMusic,
+                    insertMusic     : insertMusic,
+                    updateMusic     : updateMusic,
+                    removeMusic     : removeMusic
                  };
 
 connection.end();
