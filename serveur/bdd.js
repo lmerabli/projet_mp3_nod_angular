@@ -59,13 +59,6 @@ function initBdd()
 
 }
 
-
-
-
-
-
-
-
 // retourne toute les lignes de music
 function getAllMusic(callback)
 {
@@ -136,27 +129,6 @@ function removeMusic(id, callback)
            callback();
    });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 process.on("SIGINT", function(){
     console.log("Bye Bye");

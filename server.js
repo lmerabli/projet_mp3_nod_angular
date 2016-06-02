@@ -3,7 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var router = express.Router();
-var db = require("./bdd");
+var db = require("./serveur/bdd");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -24,7 +24,7 @@ app.get("/:id", function(req, res){
     	
 		var id = req.params.id;
 
-    	db.get(id, function(data){
+    	db.getIdMusic(id, function(data){
 
 		res.json( data );
 
@@ -35,7 +35,7 @@ app.get("/:id", function(req, res){
 // ajout un nouvel élément
 app.post("/", function(req, res){
     
-    db.insert(req.body.album, req.body.artist, function(data){
+    db.insertMusic(req.body.album, req.body.artist, function(data){
 
 		res.json(data);
 
@@ -46,7 +46,7 @@ app.post("/", function(req, res){
 
 // modifie l'élement correspondant à l'id
 app.put("/:id", function(req, res){
-    db.update(req.params.id, req.body.album, req.body.artist, function(data){
+    db.updateMusic(req.params.id, req.body.album, req.body.artist, function(data){
 
 		res.json(data);
 
@@ -55,7 +55,7 @@ app.put("/:id", function(req, res){
 
 // supprime l'élement correspondant à l'id
 app.delete("/:id", function(req, res){
-   	db.remove(req.params.id, function(data){
+   	db.removeMusic(req.params.id, function(data){
    		res.json(data);
    	}) ;
 });
