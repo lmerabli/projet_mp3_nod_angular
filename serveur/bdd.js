@@ -13,11 +13,6 @@ connection.connect();
 
 function initBdd()
 {
-
-  console.log("Creation base de donnée !");
-  var str = "CREATE DATABASE IF NOT EXISTS `projet_mp3_nod_angular`";
-  connection.query(str);
-
   //Création table music
   console.log("Creation table Music !");
   var str = "CREATE TABLE IF NOT EXISTS `music` (";

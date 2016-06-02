@@ -4,14 +4,14 @@
     "keywords": ["util", "functional", "server", "client", "browser"],
     "author": "lichou",
     "contributors": [],
-    "dependencies": {    
+    "dependencies": {
         "body-parser": "^1.15.1",
         "chokidar": "^1.5.0",
         "express": "^4.13.4",
         "id3js": "^1.1.3",
         "underscore.string": "^3.3.4",
-        "sequelize": "^3.23.2",    
-        "mysql": "felixge/node-mysql",
+        "sequelize": "^3.23.2",
+        "mysql": "^2.10.2",
         "nodemon": "^1.9.2",
         "path": "^0.12.7"
   }
