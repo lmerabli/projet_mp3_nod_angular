@@ -13,13 +13,13 @@ app.use(express.static(path.join(__dirname + '/public' )));
 //var watcher = chokidar.watch('public/uploads/incoming_songs', {ignored: /[\/\\]\./});
 //watcher.on('add', services.importSongs);
 
-//db.initBdd();
+db.initBdd();
 
 app.get('/', function (req, res) {
     res.sendfile('public/index.html');
 });
 
-
+/*
 // retourne l'élement de la table avec l'id fourni
 app.get("/:id", function(req, res){
 
@@ -60,7 +60,7 @@ app.delete("/:id", function(req, res){
    		res.json(data);
    	}) ;
 });
-
+*/
 
 
 app.listen(8000);
