@@ -110,6 +110,37 @@ function insertMusic(sta, date, titre, artist, album, genre, year, url, comment,
    });
 }
 
+// fonction qui update un enregistrement music en fonction de son id
+function updateMusic(id, sta, date, titre, artist, album, genre, year, url, comment, callback)
+{
+   connection.query("UPDATE medias SET `sta_music` = "+ sta +", `dat_add_music` = "+ date +", `title_music` = '"+ titre +"', `artist_music` = '"+ artist +"', `album_music` = '"+ album +"', `genre_music` = '"+genre+"', `year`= "+ year +", `url` = '"+ url +"', `comment` = '"+ comment +"' WHERE `id_music` = " + id , function(error){
+
+       if (!callback) return;
+
+       if (error)
+           callback(error);
+       else
+           callback();
+   });
+}
+
+// function qui supprime une music en fonction de son id
+function removeMusic(id, callback)
+{
+   connection.query("DELETE FROM `music` WHERE `id_music` = " + id , function(error){
+       if (!callback) return;
+
+       if (error)
+           callback(error);
+       else
+           callback();
+   });
+}
+
+
+
+
+
 
 
 
@@ -138,7 +169,9 @@ module.exports = {
                     initBdd : initBdd,
                     getAllMusic : getAllMusic,
                     getIdMusic  : getIdMusic,
-                    insertMusic : insertMusic
+                    insertMusic : insertMusic,
+                    updateMusic : updateMusic,
+                    removeMusic : removeMusic
                  };
 
 connection.end();
