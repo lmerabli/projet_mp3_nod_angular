@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var connection = require('./conf/bdd');
+var connection = require('./serveur/bdd');
 
 var app = express();
 
