@@ -24,7 +24,7 @@ function initBdd()
   str += "`album_music` varchar(256),";
   str += "`genre_music` varchar(256),";
   str += "`title_music` varchar(256),";
-  str += "`year` int(4),";
+  str += "`annee` int(4),";
   str += "`url` varchar(256) NOT NULL,";
   str += "`comment` varchar(500) NOT NULL,";
   str += "PRIMARY KEY (`id_music`),";
@@ -115,7 +115,7 @@ function getAlbumMusic(album, callback)
 // retourne toute les music en fonction de l'année
 function getYearMusic(year, callback)
 {
-    connection.query("SELECT * FROM `music` WHERE `year` = '"+ year +"'  ", function(error, rows){
+    connection.query("SELECT * FROM `music` WHERE `annee` = '"+ year +"'  ", function(error, rows){
         if (error)
         {
             console.log(error);
@@ -160,7 +160,7 @@ function getIdMusic(id, callback)
 //function qui permet l'intersion d'un nouvel enregistrement de music
 function insertMusic(sta, date, titre, artist, album, genre, year, url, comment, callback)
 {
-   connection.query("INSERT INTO `music` (`sta_music`, `dat_add_music`, `title_music`, `artist_music`, `album_music`, `genre_music`, `year`, `url`, `comment`) VALUES (" +sta+ ",'" +date+ "','" +titre+ "','" +artist+ "','" +album+ "','" +genre+ "'," +year+ ",'" +url+ "', '" +comment+ "')", function(error){
+   connection.query("INSERT INTO `music` (`sta_music`, `dat_add_music`, `title_music`, `artist_music`, `album_music`, `genre_music`, `annee`, `url`, `comment`) VALUES (" +sta+ ",'" +date+ "','" +titre+ "','" +artist+ "','" +album+ "','" +genre+ "'," +year+ ",'" +url+ "', '" +comment+ "')", function(error){
 
        if (!callback) return;
 
@@ -174,7 +174,7 @@ function insertMusic(sta, date, titre, artist, album, genre, year, url, comment,
 // fonction qui update un enregistrement music en fonction de son id
 function updateMusic(id, sta, date, titre, artist, album, genre, year, url, comment, callback)
 {
-   connection.query("UPDATE medias SET `sta_music` = "+ sta +", `dat_add_music` = "+ date +", `title_music` = '"+ titre +"', `artist_music` = '"+ artist +"', `album_music` = '"+ album +"', `genre_music` = '"+genre+"', `year`= "+ year +", `url` = '"+ url +"', `comment` = '"+ comment +"' WHERE `id_music` = " + id , function(error){
+   connection.query("UPDATE medias SET `sta_music` = "+ sta +", `dat_add_music` = "+ date +", `title_music` = '"+ titre +"', `artist_music` = '"+ artist +"', `album_music` = '"+ album +"', `genre_music` = '"+genre+"', `annee`= "+ year +", `url` = '"+ url +"', `comment` = '"+ comment +"' WHERE `id_music` = " + id , function(error){
 
        if (!callback) return;
 
