@@ -68,10 +68,6 @@ function _import()
             garbageFolder = 'public/uploads/garbage/',
             unknownFolder = "public/uploads/inconnu/";
 
-            console.log('parseFile ->',parseFile);
-
-
-
         if (ext !== ".mp3") {
             fs.renameSync(file, garbageFolder + parseFile.base);
             console.log('Le ficher' + parseFile.base + ' a été déplacé dans ' + garbageFolder);
@@ -81,7 +77,7 @@ function _import()
 
             fs.renameSync(file, unknownFolder + parseFile.base);
 
-            connection.insertMusic(1, getDateTime(), parseFile.name, parseFile.artist, parseFile.album, parseFile.genre, date.getFullYear(), unknownFolder + parseFile.base, parseFile.duration, "");
+            connection.insertMusic(1, getDateTime(), tags.title, tags.artist, tags.album, tags.v1.genre, tags.year, unknownFolder + parseFile.base, tags.duration, "");
             //connection.query("INSERT INTO songs(title, year, path) VALUES ('" + parseFile.name + "','" + date.getFullYear() + "','" + unknownFolder + parseFile.base + "')");
 
             console.log('Le ficher' + parseFile.base + ' a été déplacé dans ' + unknownFolder);
@@ -89,13 +85,13 @@ function _import()
         } else if(ext === '.mp3' && tags.album != null) {
             var albumFolder = "public/uploads/albums/" + s.slugify(tags.album) + '/';
             createFolder(albumFolder, function(){
-              console.log('deplace mon file stp');
+              //console.log('deplace mon file stp');
               fs.renameSync(file, albumFolder + parseFile.base);
 
             });
 
             //console.log('******-------' + tags.album + ' ----------********');
-            connection.insertMusic(1, getDateTime(), parseFile.name, parseFile.artist, parseFile.album, parseFile.genre, date.getFullYear(), unknownFolder + parseFile.base, parseFile.duration ,"");
+            connection.insertMusic(1, getDateTime(), tags.title, tags.artist, tags.album, tags.v1.genre, tags.year, albumFolder + parseFile.base, tags.duration ,"");
 
             //connection.query("INSERT INTO songs(title, artist, album, year, path) VALUES ('" + tags.title + "','" + tags.artist + "','" + tags.album + "','" + date.getFullYear() + "','" + albumFolder + parseFile.base + "')");
 

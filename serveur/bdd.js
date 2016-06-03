@@ -4,7 +4,7 @@ var mysql = require("mysql");
 var connection = mysql.createConnection({
       host: "localhost",
       user: "root",
-      password: "",
+      password: "root",
       database: "projet_mp3_nod_angular"
 });
 
@@ -168,32 +168,32 @@ function insertMusic(sta, date, titre, artist, album, genre, year, url, duration
 {
   //console.log('insertMusic('+sta+', '+date+', '+titre+', '+artist+', '+album+', '+genre+', '+year+', '+url+', '+comment+', '+callback+')');
 
-  if(titre !== undefined )
-  {
-    titre = titre.replace(/'/g, "\\'");
-  }
+  // if(titre !== undefined && titre !== '' )
+  // {
+  //   titre = titre.replace(/'/g, "\\'");
+  // }
 
-  if(artist !== undefined )
-  {
-    artist = artist.replace(/'/g, "\\'");
-  }
-
-  if(album !== undefined )
-  {
-    album = album.replace(/'/g, "\\'");
-  }
-
-  if(genre !== undefined )
-  {
-    genre = genre.replace(/'/g, "\\'");
-  }
+  // if(artist !== null && artist !== '' )
+  // {
+  //   artist = artist.replace(/'/g, "\\'");
+  // }
+  //
+  // if(album !== null && album !== '' )
+  // {
+  //   album = album.replace(/'/g, "\\'");
+  // }
+  //
+  // if(genre !== null && genre !== '' )
+  // {
+  //   genre = genre.replace(/'/g, "\\'");
+  // }
 
   if(duration === undefined )
   {
     duration = 0,00;
   }
 
-  console.log("INSERT INTO `music` (`sta_music`, `dat_add_music`, `title_music`, `artist_music`, `album_music`, `genre_music`, `annee`, `url`, `duration`, `comment`) VALUES (" +sta+ ",'" +date+ "','" +titre+ "','" +artist+ "','"+ album +"','"+ genre +"'," +year+ ",'" +url+ "', "+duration+", '"+ comment.replace(/'/g, "\\'") +"')");
+//  console.log("INSERT INTO `music` (`sta_music`, `dat_add_music`, `title_music`, `artist_music`, `album_music`, `genre_music`, `annee`, `url`, `duration`, `comment`) VALUES (" +sta+ ",'" +date+ "','" +titre+ "','" +artist+ "','"+ album +"','"+ genre +"'," +year+ ",'" +url+ "', "+duration+", '"+ comment.replace(/'/g, "\\'") +"')");
 
   connection.query("INSERT INTO `music` (`sta_music`, `dat_add_music`, `title_music`, `artist_music`, `album_music`, `genre_music`, `annee`, `url`, `duration`, `comment`) VALUES (" +sta+ ",'" +date+ "','" +titre+ "','" +artist+ "','"+ album +"','"+ genre +"'," +year+ ",'" +url+ "', "+duration+", '"+ comment.replace(/'/g, "\\'") +"')", function(error){
 
@@ -211,28 +211,32 @@ function insertMusic(sta, date, titre, artist, album, genre, year, url, duration
 // fonction qui update un enregistrement music en fonction de son id
 function updateMusic(id, sta, titre, artist, album, genre, year, url, duration, comment, callback)
 {
-    console.log("updateMusic("+id+", "+sta+", "+titre+", "+artist+", "+album+", "+genre+", "+year+", "+url+", "+duration+", "+comment+", "+callback+")");
+    //console.log("updateMusic("+id+", "+sta+", "+titre+", "+artist+", "+album+", "+genre+", "+year+", "+url+", "+duration+", "+comment+", "+callback+")");
 
-    if(titre !== undefined )
+    // if(titre !== null && titre !== '' )
+    // {
+    //   titre = titre.replace(/'/g, "\\'");
+    // }
+    //
+    // if(artist !== null && artist !== '' )
+    // {
+    //   artist = artist.replace(/'/g, "\\'");
+    // }
+    //
+    // if(album !== null && album !== '' )
+    // {
+    //   album = album.replace(/'/g, "\\'");
+    // }
+    //
+    // if(genre !== null && genre !== '' )
+    // {
+    //   genre = genre.replace(/'/g, "\\'");
+    // }
+
+    if(duration === undefined )
     {
-      titre = titre.replace(/'/g, "\\'");
+      duration = 0,00;
     }
-
-    if(artist !== undefined )
-    {
-      artist = artist.replace(/'/g, "\\'");
-    }
-
-    if(album !== undefined )
-    {
-      album = album.replace(/'/g, "\\'");
-    }
-
-    if(genre !== undefined )
-    {
-      genre = genre.replace(/'/g, "\\'");
-    }
-
 
    connection.query("UPDATE `music` SET `sta_music` = "+ sta +", `title_music` = '"+ titre +"', `artist_music` = '"+ artist +"', `album_music` = '"+ album +"', `genre_music` = '"+ genre +"', `annee`= "+ year +", `url` = '"+ url +"', `duration` = "+duration+", `comment` = '"+ comment.replace(/'/g, "\\'") +"' WHERE `id_music` = " + id , function(error){
 
@@ -249,7 +253,7 @@ function updateMusic(id, sta, titre, artist, album, genre, year, url, duration, 
 // function qui supprime une music en fonction de son id
 function removeMusic(id, callback)
 {
-    console.log("removeMusic("+id+", "+callback+")");
+    //console.log("removeMusic("+id+", "+callback+")");
    connection.query("DELETE FROM `music` WHERE `id_music` = " + id , function(error){
        if (!callback) return;
 
