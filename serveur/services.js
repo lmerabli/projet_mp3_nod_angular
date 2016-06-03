@@ -5,15 +5,18 @@ var s = require('underscore.string');
 var connection = require('./bdd');
 
 
-function createFolder(folder, c)
+function createFolder(folder, calldeplace)
 {
   console.log('createFolder('+folder+')');
   try {
       fs.accessSync(folder);
+
   } catch (e) {
       //fs.mkdirSy(folder, 777);
-      fs.mkdir(folder, 0777, c);
+      fs.mkdir(folder, 0777);
   }
+    if(calldeplace)
+      calldeplace();
 }
 
 function generateUploadsFolder()
@@ -85,10 +88,10 @@ function _import()
 
         } else if(ext === '.mp3' && tags.album != null) {
             var albumFolder = "public/uploads/albums/" + s.slugify(tags.album) + '/';
-            services.createFolder(albumFolder, function(){
-
+            createFolder(albumFolder, function(){
+              console.log('deplace mon file stp');
               fs.renameSync(file, albumFolder + parseFile.base);
-  
+
             });
 
             //console.log('******-------' + tags.album + ' ----------********');
