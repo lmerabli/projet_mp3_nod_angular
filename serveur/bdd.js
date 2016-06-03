@@ -4,7 +4,7 @@ var mysql = require("mysql");
 var connection = mysql.createConnection({
       host: "localhost",
       user: "root",
-      password: "root",
+      password: "",
       database: "projet_mp3_nod_angular"
 });
 
@@ -234,7 +234,7 @@ function updateMusic(id, sta, titre, artist, album, genre, year, url, duration, 
     }
 
 
-   connection.query("UPDATE medias SET `sta_music` = "+ sta +", `title_music` = '"+ titre +"', `artist_music` = '"+ artist +"', `album_music` = '"+ album +"', `genre_music` = '"+ genre +"', `annee`= "+ year +", `url` = '"+ url +"', `duration` = "+duration+", `comment` = '"+ comment.replace(/'/g, "\\'") +"' WHERE `id_music` = " + id , function(error){
+   connection.query("UPDATE `music` SET `sta_music` = "+ sta +", `title_music` = '"+ titre +"', `artist_music` = '"+ artist +"', `album_music` = '"+ album +"', `genre_music` = '"+ genre +"', `annee`= "+ year +", `url` = '"+ url +"', `duration` = "+duration+", `comment` = '"+ comment.replace(/'/g, "\\'") +"' WHERE `id_music` = " + id , function(error){
 
 
      if (error)

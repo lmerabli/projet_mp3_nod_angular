@@ -110,12 +110,12 @@ function _import()
 
 function updateSong(file, reqBodyAlbum)
 {
-  var infoFile = path.parse(file.path),
+  var infoFile = path.parse(file),
       newAlbum = 'public/uploads/albums/' + reqBodyAlbum + '/',
       newPath = newAlbum + infoFile.base;
 
   services.createFolder(newAlbum);
-  fs.renameSync(file.path, newPath);
+  fs.renameSync(file, newPath);
 
   if (fs.readdirSync(infoFile.dir).length === 0) {
       fs.rmdirSync(infoFile.dir);
