@@ -3,8 +3,9 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var router = express.Router();
+var chokidar = require('chokidar');
 var db = require("./serveur/bdd");
-var services = require('./server/services');
+var services = require('./serveur/services');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -15,9 +16,13 @@ app.use(express.static(path.join(__dirname + '/public' )));
 //watcher.on('add', services.importSongs);
 
 
-//db.initBdd();
+db.initBdd();
 
 services.generateUploadsFolder();
+
+var watcher = chokidar.watch('public/uploads/incoming_songs', {ignored: /[\/\\]\./});
+watcher.on('add', services.importSongs);
+
 
 
 app.get('/', function (req, res) {
@@ -27,7 +32,7 @@ app.get('/', function (req, res) {
 app.get("/songs", function(req, res){
      console.log("valeur de retour");
     db.getAllMusic(function(data,erreur){
-       
+
         console.log( data );
         res.json( data );
 
