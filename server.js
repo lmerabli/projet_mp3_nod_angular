@@ -4,16 +4,21 @@ var bodyParser = require('body-parser');
 var app = express();
 var router = express.Router();
 var db = require("./serveur/bdd");
+var services = require('./server/services');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname + '/public' )));
-/////////// dispatch 
+/////////// dispatch
 //app.use("/medias", public);
 //var watcher = chokidar.watch('public/uploads/incoming_songs', {ignored: /[\/\\]\./});
 //watcher.on('add', services.importSongs);
 
+
 //db.initBdd();
+
+services.generateUploadsFolder();
+
 
 app.get('/', function (req, res) {
     res.sendfile('public/index.html');
@@ -30,8 +35,10 @@ app.get("/songs", function(req, res){
 });
 
 // retourne l'élement de la table avec l'id fourni
+
 app.get("/songs/:id", function(req, res){
     	console.log("je passe un element");
+
 		var id = req.params.id;
 
     	db.getIdMusic(id, function(data){
@@ -44,7 +51,7 @@ app.get("/songs/:id", function(req, res){
 
 // ajout un nouvel élément
 app.post("/", function(req, res){
-    
+
     db.insertMusic(req.body.album, req.body.artist, function(data){
 
 		res.json(data);
