@@ -8,7 +8,7 @@ app.config(function($routeProvider){
         templateUrl : "librairie.html",
         controller : "LibrairieController"
     })
-    .when("/song/:id", {
+    .when("/songs/:id", {
         templateUrl : "song.html",
         controller : "SongController"
     })
