@@ -108,10 +108,10 @@ function _import()
   });
 }
 
-function updateSong(file, reqBody)
+function updateSong(file, reqBodyAlbum)
 {
   var infoFile = path.parse(file.path),
-      newAlbum = 'public/uploads/albums/' + reqBody.album + '/',
+      newAlbum = 'public/uploads/albums/' + reqBodyAlbum + '/',
       newPath = newAlbum + infoFile.base;
 
   services.createFolder(newAlbum);

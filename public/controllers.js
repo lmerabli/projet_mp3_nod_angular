@@ -22,7 +22,7 @@ angular.module("mycontrollers", [])
     //show one 
     $scope.showSong = function(song) {
         console.log(song.id_music);
-        $location.path("/song/" + song.id_music);
+        $location.path("/songs/" + song.id_music);
     };
  
     // play song
@@ -52,18 +52,21 @@ angular.module("mycontrollers", [])
     console.log("value id");
     console.log($routeParams.id);
     var songid = $routeParams.id;
-    
+     console.log("$rootScope.songs");
+     console.log($rootScope.songs.length);
     var song;
     for (var i = 0; i < $rootScope.songs.length; i++)
     {
-
-        if ($rootScope.songs[i].id == songid)
+        console.log("$rootScope.songs");
+        console.log($rootScope.songs.length);
+        if ($rootScope.songs[i].id_music == songid)
         {
             song = $rootScope.songs[i];
             break;
         }
     }
-    
+     console.log("song");
+        console.log(song);
     if (song)
     {
         $scope.song = angular.copy(song);
@@ -79,16 +82,20 @@ angular.module("mycontrollers", [])
     
     $scope.onSave = function()
     {
+        console.log("j entre onsave angulare");
         for (var i = 0; i < $rootScope.songs.length; i++)
         {
-            if ($rootScope.songs[i].id == songid)
+            
+            if ($rootScope.songs[i].id_music == songid)
             {
+                console.log("jentre");console.log($scope.song);
                 $rootScope.songs[i] = $scope.song;
                 break;
             }
         }
 
         $http.put("/songs/" + songid, $scope.song ).success( function(){
+            console.log("je rentre angular put");
             $location.path("/");
         })
         

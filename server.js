@@ -68,12 +68,29 @@ app.post("/", function(req, res){
 
 // modifie l'élement correspondant à l'id
 app.put("/songs/:id", function(req, res){
-    db.updateMusic(req.params.id, req.body.album, req.body.artist, function(data){
+    console.log("je rentre nodejs");
 
-		res.json(data);
+    var id = req.params.id;
 
-    } );
+    db.getIdMusic(id, function(data){
+        console.log("node");
+        console.log(data["url"]);
+        var error = 0;
+        if(!error) {
+            var file = data["url"];
+            var newPath = services.updateSong(file, data["album_music"]);
+
+              db.updateMusic(req.params.id,data["sta_music"], data["title_music"], data["artist_music"],data["album_music"], data["genre_music"],data["annee"], data["url"], data["duration"],data["comment"], function(){
+                if (!error) {
+                    res.json({success: true});
+                }
+            });
+        }
+    });
+
 });
+    
+
 
 // supprime l'élement correspondant à l'id
 app.delete("/songs/:id", function(req, res){
