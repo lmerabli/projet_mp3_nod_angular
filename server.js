@@ -13,16 +13,25 @@ app.use(express.static(path.join(__dirname + '/public' )));
 //var watcher = chokidar.watch('public/uploads/incoming_songs', {ignored: /[\/\\]\./});
 //watcher.on('add', services.importSongs);
 
-db.initBdd();
+//db.initBdd();
 
 app.get('/', function (req, res) {
     res.sendfile('public/index.html');
 });
 
+app.get("/songs", function(req, res){
+     console.log("valeur de retour");
+    db.getAllMusic(function(data,erreur){
+       
+        console.log( data );
+        res.json( data );
+
+    });
+});
 
 // retourne l'élement de la table avec l'id fourni
-app.get("/:id", function(req, res){
-    	
+app.get("/songs/:id", function(req, res){
+    	console.log("je passe un element");
 		var id = req.params.id;
 
     	db.getIdMusic(id, function(data){
@@ -46,7 +55,7 @@ app.post("/", function(req, res){
 });
 
 // modifie l'élement correspondant à l'id
-app.put("/:id", function(req, res){
+app.put("/songs/:id", function(req, res){
     db.updateMusic(req.params.id, req.body.album, req.body.artist, function(data){
 
 		res.json(data);
@@ -55,7 +64,7 @@ app.put("/:id", function(req, res){
 });
 
 // supprime l'élement correspondant à l'id
-app.delete("/:id", function(req, res){
+app.delete("/songs/:id", function(req, res){
    	db.removeMusic(req.params.id, function(data){
    		res.json(data);
    	}) ;

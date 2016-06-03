@@ -1,10 +1,19 @@
 <tr>
-    <td><a href="#/song/{{song.id}}">{{song.name}}</a></td>
-    <td>{{song.artist}}</td>
-    <td>{{song.album}}</td>
-    <td>{{song.year}}</td>
+    <td><a href="#/song/{{song.id_music}}">{{song.title_music}}</a></td>
+    <td>{{song.artist_music}}</td>
+    <td>{{song.album_music}}</td>
+    <td>{{song.year_music}}</td>
     <td>{{song.duration | duree}}</td>
-    <td><input type='button' value="x" ng-click="$emit('remove', song)"></td>
+    <td>
+        <button type="button" >
+                   &#8883;
+        </button>
+        <button type="button"  >
+                    &#9724;
+        </button>
+        <input type='button' value="supprimer" ng-click="$emit('remove', song)">
+        <input type='button' value="modifier" ng-click="$emit('showSong', song)">
+    </td>
     <!--  ng-click="$emit('remove', song)" -->
 </tr>
 
