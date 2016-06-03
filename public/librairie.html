@@ -1,3 +1,22 @@
+<h1>
+    <i ></i> 
+    Les chansons du moment
+</h1>
+
+<br>
+
+<input type="text" ng-model="search" placeholder="Rechercher un mp3">
+Trier par :
+<select ng-model="tri">
+    <option value="title">Titre</option>
+    <option value="artist">Artiste</option>
+    <option value="album">Album</option>
+    <option value="year">Année</option>
+    <option value="path">Mp3</option>
+</select>
+
+<br><br>
+
 <div >
 <table>
     <tr>
@@ -8,6 +27,6 @@
         <td>Durée</td>
         <td>Action</td>
     </tr>
-    <tr row ng-repeat="song in songs"></tr>
+    <tr row ng-repeat="song in songs | filter:search | orderBy:tri"></tr>
 </table>
 </div>
