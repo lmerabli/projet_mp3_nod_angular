@@ -1,0 +1,17 @@
+@import "theme.css";
+@import "player.css";
+
+html, body {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    background-image: url('../img/bkgrd.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+button, .bouton{
+    padding: 5px 10px;
+font-size: 12px;
+line-height: 1.5;
+}

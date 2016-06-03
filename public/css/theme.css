@@ -1,0 +1,26 @@
+.container {
+    padding: 15px;
+    background-color: #ffffff;
+}
+
+.navbar-default {
+    border: none;
+    border-radius: 0px;
+    border-color: #e7e7e7;
+    background-color: #336E7B;
+    box-shadow: 0 0 5px #000;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover {
+    color: #ffffff;
+}
+
+input[type=text], select {
+    width: 250px;
+    padding: 10px;
+}
+
+.btn {
+    border-radius: 0;
+}

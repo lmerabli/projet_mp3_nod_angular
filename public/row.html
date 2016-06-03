@@ -5,13 +5,13 @@
     <td>{{song.year_music}}</td>
     <td>{{song.duration | duree}}</td>
     <td>
-        <button type="button" >
+        <button type="button" ng-click="play(song)">
                    &#8883;
         </button>
-        <button type="button"  >
+        <button type="button" ng-click="pause(song)" >
                     &#9724;
         </button>
-        <input type='button' value="supprimer" ng-click="$emit('remove', song)">
+        <input class="bouton" type='button' value="supprimer" ng-click="$emit('remove', song)">
         
     </td>
     <!--  ng-click="$emit('remove', song)" -->

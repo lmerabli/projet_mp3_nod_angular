@@ -28,7 +28,7 @@ angular.module("mycontrollers", [])
     // play song
     $scope.play = function (song) {
         $rootScope.playedsong = {
-            id: song.id,
+            id: song.id_music,
             src: song.path.substring(7, song.path.length)
         };
     };
