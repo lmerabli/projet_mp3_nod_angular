@@ -17,7 +17,7 @@ Trier par :
 
 <br><br>
 
-<div >
+<div style="background-color: white;width: 70%;" >
 <table>
     <tr>
         <td>Nom</td>
@@ -29,4 +29,8 @@ Trier par :
     </tr>
     <tr row ng-repeat="song in songs | filter:search | orderBy:tri"></tr>
 </table>
+</div>
+
+<div id="playerBlc">
+    <audio id="player" src="{{ playedsong.src }}" controls autoplay></audio>
 </div>
