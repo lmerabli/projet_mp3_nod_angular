@@ -68,6 +68,14 @@ function _import()
             garbageFolder = 'public/uploads/garbage/',
             unknownFolder = "public/uploads/inconnu/";
 
+          if(tags.title == null)
+          {
+            var titre = parseFile.name;
+          }else{
+            var titre = tags.title;
+          }
+
+
         if (ext !== ".mp3") {
             fs.renameSync(file, garbageFolder + parseFile.base);
             console.log('Le ficher' + parseFile.base + ' a été déplacé dans ' + garbageFolder);
@@ -77,7 +85,7 @@ function _import()
 
             fs.renameSync(file, unknownFolder + parseFile.base);
 
-            connection.insertMusic(1, getDateTime(), tags.title, tags.artist, tags.album, tags.v1.genre, tags.year, unknownFolder + parseFile.base, tags.duration, "");
+            connection.insertMusic(1, getDateTime(), titre, tags.artist, tags.album, tags.v1.genre, tags.year, unknownFolder + parseFile.base, tags.duration, "");
             //connection.query("INSERT INTO songs(title, year, path) VALUES ('" + parseFile.name + "','" + date.getFullYear() + "','" + unknownFolder + parseFile.base + "')");
 
             console.log('Le ficher' + parseFile.base + ' a été déplacé dans ' + unknownFolder);
@@ -91,7 +99,7 @@ function _import()
             });
 
             //console.log('******-------' + tags.album + ' ----------********');
-            connection.insertMusic(1, getDateTime(), tags.title, tags.artist, tags.album, tags.v1.genre, tags.year, albumFolder + parseFile.base, tags.duration ,"");
+            connection.insertMusic(1, getDateTime(), titre, tags.artist, tags.album, tags.v1.genre, tags.year, albumFolder + parseFile.base, tags.duration ,"");
 
             //connection.query("INSERT INTO songs(title, artist, album, year, path) VALUES ('" + tags.title + "','" + tags.artist + "','" + tags.album + "','" + date.getFullYear() + "','" + albumFolder + parseFile.base + "')");
 
